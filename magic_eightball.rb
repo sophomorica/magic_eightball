@@ -48,18 +48,42 @@ class MagicEightBall
     print `clear`
     # sleep 1
     seperator
-    if input == "add_answers"
-      add_answers
-    elsif input == "print_answer"
-      @random_answers.each do |x|
-        puts x.ans.colorize(:green)
-      end
-    else
-    puts "                                            #{@random_answers.sample.ans.colorize(:blue)}"
-    seperator
+    # if input == "add_answers"
+    #   add_answers
+    #   elsif input == "print_answers"
+    #   @random_answers.each do |x|
+    #     puts x.ans.colorize(:green)
+    #     end
+    #   else
+    #   puts "                                            #{@random_answers.sample.ans.colorize(:blue)}"
+    #   seperator
+    # end
+    case 
+      when input == "add_answers"
+        add_answers
+      when input == "print_answers"
+        print_answers
+      when input == "exit"
+        exit
+      else
+        answers
     end
     
   end
+  def answers 
+    puts "                                            #{@random_answers.sample.ans.colorize(:blue)}"
+      seperator
+  end
+  def print_answers
+    print `clear`
+    seperator
+    puts "All of my knowledge on one page:".upcase.colorize(:blue)
+    @random_answers.each do |x|
+      puts x.ans.colorize(:green)
+      end
+      seperator
+  end
+  
 
   def add_answers
     print `clear`
@@ -68,10 +92,11 @@ class MagicEightBall
     puts "                              You have unlocked the power to make your own future\n                                       write your own answer".upcase.colorize(:green)
     seperator
     input = gets.strip
-    @random_answers << input
+    @random_answers << RandomAnswers.new(input)
+    # @random_answers << input
     # RandomAnswers.new("#{input}")
     greet 
-    menu
+    print_answers
   end
 
 
