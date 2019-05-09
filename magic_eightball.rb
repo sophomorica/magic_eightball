@@ -32,7 +32,7 @@ class MagicEightBall
       RandomAnswers.new("Your mom goes to college")]
     greet
     magic_answer
-    add_answers
+    
   end
 
   def greet
@@ -44,14 +44,20 @@ class MagicEightBall
   end
 
   def magic_answer
-    input = gets.strip
+    input = gets.strip.downcase
     print `clear`
     # sleep 1
     seperator
-   
+    if input == "add_answers"
+      add_answers
+    elsif input == "print_answer"
+      @random_answers.each do |x|
+        puts x.ans.colorize(:green)
+      end
+    else
     puts "                                            #{@random_answers.sample.ans.colorize(:blue)}"
     seperator
-
+    end
     
   end
 
@@ -65,7 +71,7 @@ class MagicEightBall
     @random_answers << input
     # RandomAnswers.new("#{input}")
     greet 
-    magic_answer
+    menu
   end
 
 
