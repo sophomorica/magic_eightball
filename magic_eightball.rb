@@ -29,8 +29,12 @@ class MagicEightBall
       RandomAnswers.new("Eat Chicken instead"),
       RandomAnswers.new("Outlook is Sunny"),
       RandomAnswers.new("Like Walking on Sunshine, don't it feel good"),
-      RandomAnswers.new("Your mom goes to college")]
+      RandomAnswers.new("Your mom goes to college"),
+      RandomAnswers.new("k")]
+      @random_answers_clone = []
     greet
+    
+    
     magic_answer
     
   end
@@ -42,6 +46,9 @@ class MagicEightBall
     seperator
 
   end
+  # def clone_array
+  #   @random_answers_clone = random_answers.clone
+  # end
 
   def magic_answer
     input = gets.strip.downcase
@@ -81,14 +88,20 @@ class MagicEightBall
 
   def add_answers
     print `clear`
-    sleep 2
+    # sleep 2
     seperator
     puts "                              You have unlocked the power to make your own future\n                                       write your own answer".upcase.colorize(:green)
     seperator
     input = gets.strip
-    @random_answers << RandomAnswers.new(input)
-    # @random_answers << input
-    # RandomAnswers.new("#{input}")
+    @random_answers_clone = @random_answers.map do |x| x.ans  end
+    if  @random_answers_clone.include?(input)
+      
+      puts"already there"
+      greet
+      else
+      @random_answers << RandomAnswers.new(input)
+    end
+    binding.pry
     greet 
     print_answers
   end
