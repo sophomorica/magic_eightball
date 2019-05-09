@@ -3,10 +3,10 @@ require "pry"
 
 
 class RandomAnswers 
-  attr_accessor :ans, :num
-  def initialize(ans, num)
+  attr_accessor :ans
+  def initialize(ans)
     @ans = ans
-    @num = num
+
 
   end
 end 
@@ -20,24 +20,25 @@ class MagicEightBall
   def initialize
 
     @random_answers = [
-      RandomAnswers.new("Ask again", 1),
-      RandomAnswers.new("Pure folly", 2),
-      RandomAnswers.new("Perhaps in time", 3),
-      RandomAnswers.new("Let me check back on that", 4),
-      RandomAnswers.new("People do", 5),
-      RandomAnswers.new("This is your lucky day", 6),
-      RandomAnswers.new("Eat Chicken instead", 7),
-      RandomAnswers.new("Outlook is Sunny", 8),
-      RandomAnswers.new("Like Walking on Sunshine, don't it feel good", 9),
-      RandomAnswers.new("Your mom goes to college", 10)]
+      RandomAnswers.new("Ask again"),
+      RandomAnswers.new("Pure folly"),
+      RandomAnswers.new("Perhaps in time"),
+      RandomAnswers.new("Let me check back on that"),
+      RandomAnswers.new("People do"),
+      RandomAnswers.new("This is your lucky day"),
+      RandomAnswers.new("Eat Chicken instead"),
+      RandomAnswers.new("Outlook is Sunny"),
+      RandomAnswers.new("Like Walking on Sunshine, don't it feel good"),
+      RandomAnswers.new("Your mom goes to college")]
     greet
     magic_answer
+    add_answers
   end
 
   def greet
     print `clear`
     seperator
-    puts "Ask me anything and I will tell you something else".colorize(:blue)
+    puts "                            Ask me anything and I will tell you something else".colorize(:blue)
     seperator
 
   end
@@ -45,14 +46,27 @@ class MagicEightBall
   def magic_answer
     input = gets.strip
     print `clear`
-    sleep 1
+    # sleep 1
     seperator
-    puts @random_answers[1].ans.colorize(:blue)
+   
+    puts "                                            #{@random_answers.sample.ans.colorize(:blue)}"
     seperator
 
     
   end
 
+  def add_answers
+    print `clear`
+    sleep 2
+    seperator
+    puts "                              You have unlocked the power to make your own future\n                                       write your own answer".upcase.colorize(:green)
+    seperator
+    input = gets.strip
+    @random_answers << input
+    # RandomAnswers.new("#{input}")
+    greet 
+    magic_answer
+  end
 
 
 
