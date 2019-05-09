@@ -48,16 +48,7 @@ class MagicEightBall
     print `clear`
     # sleep 1
     seperator
-    # if input == "add_answers"
-    #   add_answers
-    #   elsif input == "print_answers"
-    #   @random_answers.each do |x|
-    #     puts x.ans.colorize(:green)
-    #     end
-    #   else
-    #   puts "                                            #{@random_answers.sample.ans.colorize(:blue)}"
-    #   seperator
-    # end
+  
     case 
       when input == "add_answers"
         add_answers
@@ -73,6 +64,9 @@ class MagicEightBall
   def answers 
     puts "                                            #{@random_answers.sample.ans.colorize(:blue)}"
       seperator
+      sleep 3
+      greet
+      magic_answer
   end
   def print_answers
     print `clear`
@@ -98,12 +92,6 @@ class MagicEightBall
     greet 
     print_answers
   end
-
-
-
-
-
-
 
   def seperator
     puts "\n\n"
