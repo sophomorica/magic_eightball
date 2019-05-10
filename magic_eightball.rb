@@ -30,12 +30,12 @@ class MagicEightBall
       RandomAnswers.new("Outlook is Sunny"),
       RandomAnswers.new("Like Walking on Sunshine, don't it feel good"),
       RandomAnswers.new("Your mom goes to college"),
-      RandomAnswers.new("k")]
+      ]
       @random_answers_clone = []
     greet
     
     
-    magic_answer
+
     
   end
 
@@ -44,7 +44,7 @@ class MagicEightBall
     seperator
     puts "                            Ask me anything and I will tell you something else".colorize(:blue)
     seperator
-
+    magic_answer
   end
   # def clone_array
   #   @random_answers_clone = random_answers.clone
@@ -61,7 +61,9 @@ class MagicEightBall
         add_answers
       when input == "print_answers"
         print_answers
-      when input == "exit"
+      when input == "reset_answers"
+        reset_answers
+      when input == "QUIT" 
         exit
       else
         answers
@@ -82,7 +84,10 @@ class MagicEightBall
     @random_answers.each do |x|
       puts x.ans.colorize(:green)
       end
+      sleep 1
       seperator
+      greet 
+      magic_answer
   end
   
 
@@ -101,11 +106,49 @@ class MagicEightBall
       else
       @random_answers << RandomAnswers.new(input)
     end
-    binding.pry
-    greet 
-    print_answers
-  end
 
+    greet 
+    magic_answer
+
+  end
+  def reset_answers
+    # binding.pry
+    @random_answers = @random_answers_clone.map do |x| 
+      RandomAnswers.new(x)
+    end
+    print `clear`
+    seperator
+    puts "\n\nI forgot your answers and only remember mine\n\n".colorize(:blue)
+    seperator
+
+    menu
+  end
+  def menu
+    puts "1) Ask eight-ball a question"
+    puts "2) Add your own answers"
+    puts "3) View all possible"
+    puts "4) Reset the Answers"
+    puts "5) Exit"
+    input = gets.to_i
+    case input 
+    when 1
+      greet
+      magic_answer
+    when 2
+      add_answers
+    when 3
+      print_answers
+    when 4
+      reset_answers
+    when 5
+      exit
+    else
+      seperator
+      puts "Pick a valid option".upcase.colorize(:blue)
+      seperator
+      menu
+    end
+  end
   def seperator
     puts "\n\n"
     puts "(*)".colorize(:yellow) *40
