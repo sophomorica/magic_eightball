@@ -38,7 +38,7 @@ class MagicEightBall
   def greet
     print `clear`
     seperator
-    puts "                            Ask me anything and I will tell you something else".colorize(:blue)
+    puts "                       Ask me anything and I will tell you something else \n                               just don't type 'menu' by itself".colorize(:blue)
     seperator
     input = gets.strip.downcase
     print `clear`
@@ -54,6 +54,8 @@ class MagicEightBall
         print_answers
       when input == "reset_answers"
         reset_answers
+      when input.upcase == "MENU"
+        menu
       else
         answers
     end
@@ -116,6 +118,10 @@ class MagicEightBall
   end
 
   def menu
+    seperator
+    puts "           now you have all power!!!!!!!".upcase.colorize(:green)
+    sleep 2
+    print `clear`
     puts "1) Ask eight-ball a question"
     puts "2) Add your own answers"
     puts "3) View all possible"
