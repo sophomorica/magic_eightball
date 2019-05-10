@@ -35,7 +35,7 @@ class MagicEightBall
       RandomAnswers.new("As long as you don't tell anyone"),
       RandomAnswers.new("Don't go chasin' waterfalls"),
       ]
-      @random_answers_clone = []
+     @random_answers_clone = @random_answers.map do |x| x.ans  end
     greet
   end
 
@@ -115,11 +115,14 @@ class MagicEightBall
     @random_answers = @random_answers_clone.map do |x| 
       RandomAnswers.new(x)
     end
+   
     print `clear`
     seperator
     puts "\n\nI forgot your answers and only remember mine\n\n".colorize(:blue)
     seperator
-
+    sleep 2
+    print`clear`
+    sleep 1
     menu
   end
 
