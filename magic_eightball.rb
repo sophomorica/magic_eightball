@@ -27,9 +27,13 @@ class MagicEightBall
       RandomAnswers.new("People do"),
       RandomAnswers.new("This is your lucky day"),
       RandomAnswers.new("Eat Chicken instead"),
+      RandomAnswers.new("stick to the rivers and lakes you're used to"),
       RandomAnswers.new("Outlook is Sunny"),
       RandomAnswers.new("Like Walking on Sunshine, don't it feel good"),
       RandomAnswers.new("Your mom goes to college"),
+      RandomAnswers.new("I say 'Weird' you say 'question'!"),
+      RandomAnswers.new("As long as you don't tell anyone"),
+      RandomAnswers.new("Don't go chasin' waterfalls"),
       ]
       @random_answers_clone = []
     greet
@@ -46,6 +50,8 @@ class MagicEightBall
     seperator
   
     case 
+      when input.upcase == "EXIT" 
+        exit
       when input.upcase == "QUIT" 
         exit
       when input == "add_answers"
