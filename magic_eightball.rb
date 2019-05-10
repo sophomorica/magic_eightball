@@ -33,10 +33,6 @@ class MagicEightBall
       ]
       @random_answers_clone = []
     greet
-    
-    
-
-    
   end
 
   def greet
@@ -44,38 +40,34 @@ class MagicEightBall
     seperator
     puts "                            Ask me anything and I will tell you something else".colorize(:blue)
     seperator
-    magic_answer
-  end
-  # def clone_array
-  #   @random_answers_clone = random_answers.clone
-  # end
-
-  def magic_answer
     input = gets.strip.downcase
     print `clear`
     # sleep 1
     seperator
   
     case 
+      when input.upcase == "QUIT" 
+        exit
       when input == "add_answers"
         add_answers
       when input == "print_answers"
         print_answers
       when input == "reset_answers"
         reset_answers
-      when input == "QUIT" 
-        exit
       else
         answers
     end
-    
   end
+  # def magic_answer
+    
+    
+  # end
   def answers 
     puts "                                            #{@random_answers.sample.ans.colorize(:blue)}"
       seperator
       sleep 3
       greet
-      magic_answer
+      
   end
   def print_answers
     print `clear`
@@ -84,16 +76,16 @@ class MagicEightBall
     @random_answers.each do |x|
       puts x.ans.colorize(:green)
       end
-      sleep 1
+      sleep 3
       seperator
       greet 
-      magic_answer
+      
   end
   
 
   def add_answers
     print `clear`
-    # sleep 2
+    # sleep 1
     seperator
     puts "                              You have unlocked the power to make your own future\n                                       write your own answer".upcase.colorize(:green)
     seperator
@@ -108,11 +100,10 @@ class MagicEightBall
     end
 
     greet 
-    magic_answer
+    
 
   end
   def reset_answers
-    # binding.pry
     @random_answers = @random_answers_clone.map do |x| 
       RandomAnswers.new(x)
     end
@@ -123,6 +114,7 @@ class MagicEightBall
 
     menu
   end
+
   def menu
     puts "1) Ask eight-ball a question"
     puts "2) Add your own answers"
@@ -133,7 +125,7 @@ class MagicEightBall
     case input 
     when 1
       greet
-      magic_answer
+      
     when 2
       add_answers
     when 3
