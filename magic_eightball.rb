@@ -133,7 +133,7 @@ class MagicEightBall
     print `clear`
     puts "1) Ask eight-ball a question"
     puts "2) Add your own answers"
-    puts "3) View all possible"
+    puts "3) View all possible answers"
     puts "4) Reset the Answers"
     puts "5) Exit"
     input = gets.to_i
